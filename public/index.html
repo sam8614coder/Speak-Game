@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0809">
+  <meta name="description" content="SPEAK Online - play the game of deals, lies and turf with friends over the internet, with a voice phone call built in.">
+  <title>SPEAK Online</title>
+  <link rel="icon" href="assets/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="online.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ============================ START ============================ -->
+  <main id="menu" class="screen">
+    <div class="menu-glow" aria-hidden="true"></div>
+    <div class="menu-inner">
+      <header class="hero">
+        <div class="hero-phone" id="heroPhone" aria-hidden="true"></div>
+        <div class="hero-text">
+          <p class="kicker">Online &middot; with a real phone line</p>
+          <h1 class="logo" aria-label="Speak">SPEAK</h1>
+          <p class="tagline">Ring your friends. Strike deals out loud. Betray at the last second.<br>Hold <b>9 of 17 hideouts</b> to rule the city.</p>
+        </div>
+      </header>
+
+      <section class="setup panel" aria-labelledby="onlineTitle">
+        <h2 id="onlineTitle" class="panel-title">Play online <span class="muted">(2&ndash;6 gangs)</span></h2>
+        <label class="opt">Your name
+          <input id="nameInput" class="textbox" type="text" maxlength="16" autocomplete="nickname" placeholder="Your gang name">
+        </label>
+        <div class="menu-split">
+          <div class="menu-box">
+            <h3>Start a new room</h3>
+            <p class="muted">You get a 4-letter code to share with friends.</p>
+            <button class="btn btn-primary btn-xl" id="createBtn" type="button">Create room</button>
+          </div>
+          <div class="menu-box">
+            <h3>Join a friend</h3>
+            <p class="muted">Type the code they sent you.</p>
+            <div class="row">
+              <input id="codeInput" class="textbox code" type="text" maxlength="4" inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="ABCD" aria-label="Room code">
+              <button class="btn btn-primary" id="joinBtn" type="button">Join</button>
+            </div>
+          </div>
+        </div>
+        <p id="menuMsg" class="menu-msg" role="status" aria-live="polite"></p>
+        <div class="menu-links">
+          <button class="link" id="howBtn" type="button">How to play</button>
+          <span aria-hidden="true">&middot;</span>
+          <button class="link" id="settingsBtn" type="button">Settings</button>
+          <span aria-hidden="true">&middot;</span>
+          <button class="link" id="menuSoundBtn" type="button" aria-pressed="true">Sound: on</button>
+        </div>
+      </section>
+      <p class="foot">Voice calls go straight between players. Everyone needs a microphone and a modern browser. Fan-made tribute inspired by the Steam game &ldquo;Speak&rdquo;.</p>
+    </div>
+  </main>
+
+  <!-- ============================ LOBBY ============================ -->
+  <main id="lobby" class="screen" hidden>
+    <div class="menu-glow" aria-hidden="true"></div>
+    <div class="menu-inner lobby-inner" id="lobbyInner"></div>
+  </main>
+
+  <!-- ============================= GAME ============================= -->
+  <main id="game" class="screen" hidden>
+    <header class="topbar">
+      <div class="watch" id="watch" title="Round"><span class="watch-label">Round</span><b id="roundNum">1</b></div>
+      <div class="phase">
+        <h2 id="phaseTitle">Phones are open</h2>
+        <p id="phaseSub"></p>
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn" id="phoneBtn" type="button" aria-label="Phones (voice call)"></button>
+        <button class="icon-btn" id="soundBtn" type="button" aria-label="Toggle sound"></button>
+        <button class="icon-btn" id="helpBtn" type="button" aria-label="How to play"></button>
+        <button class="icon-btn" id="menuBtn" type="button" aria-label="Game menu"></button>
+      </div>
+    </header>
+
+    <aside class="scoreboard" id="scoreboard" aria-label="Scoreboard"></aside>
+
+    <div class="stage">
+      <div class="board-wrap">
+        <svg id="board" role="img" aria-label="City map. Tap districts to give orders."></svg>
+        <div class="zoom-controls">
+          <button class="icon-btn" id="zoomIn" type="button" aria-label="Zoom in"></button>
+          <button class="icon-btn" id="zoomOut" type="button" aria-label="Zoom out"></button>
+          <button class="icon-btn" id="zoomFit" type="button" aria-label="Fit whole map"></button>
+        </div>
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <section class="dock" id="dock" aria-live="polite"></section>
+  </main>
+
+  <!-- ============================ RESULTS ============================ -->
+  <main id="end" class="screen" hidden>
+    <canvas id="confetti" aria-hidden="true"></canvas>
+    <div class="end-inner" id="endInner"></div>
+  </main>
+
+  <!-- ============================ OVERLAYS ============================ -->
+  <div id="phonePanel" class="phone-panel" hidden></div>
+  <div id="ring" class="ring-bar" hidden role="alert"></div>
+  <div id="conn" class="conn-bar" hidden role="status"></div>
+  <div id="modal" class="modal-wrap" hidden></div>
+</div>
+
+<script src="map-data.js"></script>
+<script src="engine.js"></script>
+<script src="audio.js"></script>
+<script src="board.js"></script>
+<script src="voice.js"></script>
+<script src="online.js"></script>
+</body>
+</html>
